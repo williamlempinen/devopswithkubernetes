@@ -1,7 +1,7 @@
-import crypto from "crypto";
+const crypto = require("crypto");
 
 const createTimestamp = () => {
-  return new Date.now();
+  return Date(Date.now()).toString();
 };
 
 const generateRandomString = () => {
