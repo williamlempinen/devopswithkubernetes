@@ -1,0 +1,17 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: project-v02-dep
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: project-v02
+  template:
+    metadata:
+      labels:
+        app: project-v02
+    spec:
+      containers:
+        - name: project-v02
+          image: tuplawee7/102-project-v01
