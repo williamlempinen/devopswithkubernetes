@@ -1,0 +1,17 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: log-output-107-dep
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: 107-log-output
+  template:
+    metadata:
+      labels:
+        app: 107-log-output
+    spec:
+      containers:
+        - name: 107-log-output
+          image: tuplawee7/101-log-output:latest
