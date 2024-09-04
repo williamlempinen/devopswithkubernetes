@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: output-generator-110-dep
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: 110-output-generator
+  template:
+    metadata:
+      labels:
+        app: 110-output-generator
+    spec:
+      volumes:
+        - name: shared-image
+          emptyDir: {}
+      containers:
+        - name: 110-output
+          image: tuplawee7/output:latest
+          volumeMounts:
+            - name: shared-image
+              mountPath: /usr/src/app/files
+        - name: 110-generator
+          image: tuplawee7/generator:latest
+          volumeMounts:
+            - name: shared-image
+              mountPath: /usr/src/app/files
