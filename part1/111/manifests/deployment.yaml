@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pingpong-log-111-dep
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: 111-pingpong-log
+  template:
+    metadata:
+      labels:
+        app: 111-pingpong-log
+    spec:
+      volumes:
+        - name: shared-image
+          persistentVolumeClaim:
+            claimName: pingpong-log-111-claim
+      containers:
+        - name: 111-log
+          image: tuplawee7/logger:latest
+          volumeMounts:
+            - name: shared-image
+              mountPath: /usr/src/app/files
+        - name: 111-pingpong
+          image: tuplawee7/pingpongv2:latest
+          volumeMounts:
+            - name: shared-image
+              mountPath: /usr/src/app/files
